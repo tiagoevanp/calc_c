@@ -46,10 +46,6 @@ int verificationsBeforeCalc(int argc, char **argv) {
 	return 1;
 }
 
-int verificationsAfterCalc(int argc, char **argv) {
-	return 1;
-}
-
 int main(int argc, char **argv) {
 	char * a;
 
@@ -61,11 +57,6 @@ int main(int argc, char **argv) {
 	float secondNum = strtof(argv[3], &a);
 	
 	float result = calc(firstNum, secondNum, argv[2]);
-
-	if(!verificationsAfterCalc(argc, argv)) {
-		return 0;
-	}
-
 	printf("%g\n", result);
 	
 	return 1;
