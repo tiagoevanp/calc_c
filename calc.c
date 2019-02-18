@@ -19,7 +19,7 @@ int verificationsBeforeCalc(int argc, char **argv) {
 	//VERIFICA A QUANTIDADE DE ARGUMENTOS ENVIADOS
 	if(argc != 4) {
 		printf("O número de parametros passados deve ser 3\n");
-		return 0;
+		return 1;
 	}
 	
 	char firstNum = *argv[1];
@@ -28,29 +28,29 @@ int verificationsBeforeCalc(int argc, char **argv) {
 	//VERIFICA SE ESTÁ ENVIANDO NÚMEROS COMO OPERANDOS
 	if(!isdigit(firstNum) || !isdigit(secondNum)) {
 		printf("Apenas números são aceitos como operandos!\n");
-		return 0;
+		return 1;
 	}
 
 	//VERIFICA SE O OPERADOR É VALIDO 
 	if(strcmp(argv[2], "+") != 0 && strcmp(argv[2], "-") != 0 && strcmp(argv[2], "x") != 0 && strcmp(argv[2], "/") != 0) {
 		printf("Apenas é aceito operadores como: '+', '-', '/' ou 'x'\n");
-		return 0;
+		return 1;
 	}
 
 	//VERIFICA SE OS NÚMEROS PASSADOS COMO ARGUMENTO SÃO MAIORES
 	if(strlen(argv[1]) > 10 || strlen(argv[3]) > 10) {
 		printf("Um dos seus operandos é maior do que o permitido (10 caracteres).\n");
-		return 0;
+		return 1;
 	}
 
-	return 1;
+	return 0;
 }
 
 int main(int argc, char **argv) {
 	char * a;
 
-	if(!verificationsBeforeCalc(argc, argv)) {
-		return 0;
+	if(verificationsBeforeCalc(argc, argv)) {
+		return 1;
 	}
 
 	float firstNum = strtof(argv[1], &a);
@@ -59,5 +59,5 @@ int main(int argc, char **argv) {
 	float result = calc(firstNum, secondNum, argv[2]);
 	printf("%g\n", result);
 	
-	return 1;
+	return 0;
 }
